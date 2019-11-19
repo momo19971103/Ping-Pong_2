@@ -19,6 +19,12 @@ public class DoubleMode extends JPanel {
         this.setLayout(null);
         JButton btn1 = new JButton("雙人對打-一般模式");
         btn1.setBounds(90, 30, 200, 50);
+        btn1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                frameSet.setVisible(false);
+                new PPG(PPG.Mode_general);
+            }
+        });
         this.add(btn1);
 
         final JButton btn2 = new JButton("雙人對打-無限模式");
@@ -26,9 +32,9 @@ public class DoubleMode extends JPanel {
         btn2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 frameSet.setVisible(false);
-                new PPG();
+                new PPG(PPG.Mode_unlimited);
             }
         });
         this.add(btn2);
-    }
+}
 }

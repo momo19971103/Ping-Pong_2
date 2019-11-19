@@ -12,29 +12,36 @@ import javax.swing.JPanel;
 
 
 public class PPG extends JPanel implements KeyListener, ActionListener {
+    private FrameSet frameSet = new FrameSet();
     private int SCREEN_WIDTH;
     private int SCREEN_HEIGHT;
     private Ball ball = new Ball();
     private PlayPad playPad = new PlayPad();
+    public final static int Mode_general = 0, Mode_unlimited = 1;
+    private int MODE = -1;
 
-    PPG() {
+    PPG(int Mode) {
+        MODE = Mode;
         SCREEN_WIDTH = 400;
         SCREEN_HEIGHT = 400;
-        ball.setBallPos(SCREEN_WIDTH, SCREEN_HEIGHT);
+        ball.setMode(MODE, SCREEN_WIDTH, SCREEN_HEIGHT);
         setWindows();
     }
 
-    public PPG(int width, int height) {
+    public PPG(int Mode, int width, int height) {
+        MODE = Mode;
         SCREEN_WIDTH = width;
         SCREEN_HEIGHT = height;
-        ball.setBallPos(SCREEN_WIDTH, SCREEN_HEIGHT);
+        ball.setMode(MODE, SCREEN_WIDTH, SCREEN_HEIGHT);
         setWindows();
     }
 
     public void setWindows() {
-        FrameSet frameSet = new FrameSet();
         frameSet.addKeyListener(this);
-        frameSet.setTitle("無限地獄");
+        if (MODE == Mode_general)
+            frameSet.setTitle("一般模式");
+        if (MODE == Mode_unlimited)
+            frameSet.setTitle("無限模式");
         frameSet.setVisible(true);
         frameSet.add(this);
 
@@ -49,21 +56,19 @@ public class PPG extends JPanel implements KeyListener, ActionListener {
     }
 
     public void paint(Graphics g) {
-
         super.paint(g);         //父類別Window的paint
-
         playPad.drawPlayerPad(g);
         playPad.drawScore(g);
         ball.drawBall(g);
-
     }
 
 
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
-
         ball.BallMove();
         int[] Score = ball.checkBallPosRange(SCREEN_WIDTH, SCREEN_HEIGHT, playPad.getPlayerScore());
+        if (MODE == Mode_general)
+            JudgeGameOver(Score);
         playPad.setPlayerScore(Score);
         ball.Ball_Pad_interactive(playPad.getPlayerPosX(), playPad.getPlayerPosY(), playPad.getPad_Width_Height());
         repaint();
@@ -100,5 +105,14 @@ public class PPG extends JPanel implements KeyListener, ActionListener {
     @Override
     public void keyReleased(KeyEvent keyEvent) {
 
+    }
+
+    private void JudgeGameOver(int[] Score) {
+        for (int i = 0; i < 2; i++) {
+            if (Score[i] > 0) {
+                new GameOver(frameSet);
+                this.setVisible(false);
+            }
+        }
     }
 }

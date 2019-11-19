@@ -1,19 +1,18 @@
 package com.example.lib;
 
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+
 import javax.swing.JPanel;
 
 public class Directory {
 
     public JPanel jPanel = new JPanel();
-    FrameSet frameSet = new FrameSet();
+    public FrameSet frameSet = new FrameSet();
+
     public Directory() {
-
-
         frameSet.add(jPanel);
         jPanel.setLayout(null);
 
