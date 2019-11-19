@@ -5,19 +5,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class Directory extends JFrame {
-    private JPanel jPanel = new JPanel();
+public class Directory {
 
+    public JPanel jPanel = new JPanel();
+    FrameSet frameSet = new FrameSet();
     public Directory() {
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setBounds(0,0,400,400);
-        this.setTitle("遊戲目錄");
-        this.setVisible(true);
 
-        this.setContentPane(jPanel);
+
+        frameSet.add(jPanel);
         jPanel.setLayout(null);
 
         JButton btn1 = new JButton("單人");
@@ -28,13 +25,14 @@ public class Directory extends JFrame {
         btn2.setBounds(90, 100, 200, 50);
         btn2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                jPanel= new PPG();
+                new DoubleMode(frameSet);
+                jPanel.setVisible(false);
             }
         });
         jPanel.add(btn2);
 
         JButton btn3 = new JButton("離開");
-        btn3.setBounds(90,170 , 200, 50);
+        btn3.setBounds(90, 170, 200, 50);
         jPanel.add(btn3);
     }
 }

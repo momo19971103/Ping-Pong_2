@@ -70,7 +70,7 @@ public class Ball {
             ballSpeedX = 1;
 
 
-        
+
 
         // 球是否碰到右邊板子
         if(BallCenterPos[CenterY]>Play2_PadTopLeftPos[Y]&&BallCenterPos[CenterY]<Play2_PadTopLeftPos[Y]+ Pad_Width_Height[Height]

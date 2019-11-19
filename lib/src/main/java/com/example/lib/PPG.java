@@ -2,13 +2,12 @@ package com.example.lib;
 
 
 import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import javax.swing.JFrame;
+
 import javax.swing.JPanel;
 
 
@@ -33,15 +32,11 @@ public class PPG extends JPanel implements KeyListener, ActionListener {
     }
 
     public void setWindows() {
-        JFrame jFrame = new JFrame();
-        jFrame.setTitle("乒乓");
-        jFrame.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
-        jFrame.setResizable(false);
-        jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        jFrame.setLocationRelativeTo(null);
-        jFrame.addKeyListener(this);
-        jFrame.setVisible(true);
-        jFrame.add(this);
+        FrameSet frameSet = new FrameSet();
+        frameSet.addKeyListener(this);
+        frameSet.setTitle("無限地獄");
+        frameSet.setVisible(true);
+        frameSet.add(this);
 
         playPad.initPlayerPos(SCREEN_WIDTH, SCREEN_HEIGHT);
         playPad.initPlayerScore();
@@ -54,6 +49,7 @@ public class PPG extends JPanel implements KeyListener, ActionListener {
     }
 
     public void paint(Graphics g) {
+
         super.paint(g);         //父類別Window的paint
 
         playPad.drawPlayerPad(g);
@@ -67,9 +63,9 @@ public class PPG extends JPanel implements KeyListener, ActionListener {
     public void actionPerformed(ActionEvent actionEvent) {
 
         ball.BallMove();
-        int[] Score = ball.checkBallPosRange(SCREEN_WIDTH, SCREEN_HEIGHT,playPad.getPlayerScore());
+        int[] Score = ball.checkBallPosRange(SCREEN_WIDTH, SCREEN_HEIGHT, playPad.getPlayerScore());
         playPad.setPlayerScore(Score);
-        ball.Ball_Pad_interactive(playPad.getPlayerPosX(),playPad.getPlayerPosY(),playPad.getPad_Width_Height());
+        ball.Ball_Pad_interactive(playPad.getPlayerPosX(), playPad.getPlayerPosY(), playPad.getPad_Width_Height());
         repaint();
 
     }

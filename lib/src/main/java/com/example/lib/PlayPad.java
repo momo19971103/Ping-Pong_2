@@ -17,7 +17,7 @@ public class PlayPad {
         for (int i = 0; i < PLAYER_NUM; i++) {
             playerPosY[i] = screen_Height / 2;
         }
-        int WidthCorrectionLength = 5;
+        int WidthCorrectionLength = 10;
         playerPosX[0] =  PAD_OFFSET ;
         playerPosX[1] = screen_Width - InitialPad_Width - PAD_OFFSET-WidthCorrectionLength ;
     }
