@@ -12,15 +12,17 @@ import javax.swing.JPanel;
 
 
 public class PPG extends JPanel implements KeyListener, ActionListener {
-    private FrameSet frameSet = new FrameSet();
+    private FrameSet frameSet = null;
     private int SCREEN_WIDTH;
     private int SCREEN_HEIGHT;
+    private boolean isContinue = true;
     private Ball ball = new Ball();
     private PlayPad playPad = new PlayPad();
     public final static int Mode_general = 0, Mode_unlimited = 1;
     private int MODE = -1;
 
-    PPG(int Mode) {
+    PPG(int Mode, FrameSet frameset) {
+        frameSet = frameset;
         MODE = Mode;
         SCREEN_WIDTH = 400;
         SCREEN_HEIGHT = 400;
@@ -65,14 +67,15 @@ public class PPG extends JPanel implements KeyListener, ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
-        ball.BallMove();
-        int[] Score = ball.checkBallPosRange(SCREEN_WIDTH, SCREEN_HEIGHT, playPad.getPlayerScore());
-        if (MODE == Mode_general)
-            JudgeGameOver(Score);
-        playPad.setPlayerScore(Score);
-        ball.Ball_Pad_interactive(playPad.getPlayerPosX(), playPad.getPlayerPosY(), playPad.getPad_Width_Height());
-        repaint();
-
+        if (isContinue) {
+            ball.BallMove();
+            int[] Score = ball.checkBallPosRange(SCREEN_WIDTH, SCREEN_HEIGHT, playPad.getPlayerScore());
+            if (MODE == Mode_general)
+                JudgeGameOver(Score);
+            playPad.setPlayerScore(Score);
+            ball.Ball_Pad_interactive(playPad.getPlayerPosX(), playPad.getPlayerPosY(), playPad.getPad_Width_Height());
+            repaint();
+        }
     }
 
     @Override
@@ -82,24 +85,26 @@ public class PPG extends JPanel implements KeyListener, ActionListener {
 
     @Override
     public void keyPressed(KeyEvent keyEvent) {
-        int key = keyEvent.getKeyCode();
+        if (isContinue) {
+            int key = keyEvent.getKeyCode();
 
-        // Move the player on the left
-        if (key == KeyEvent.VK_UP)
-            playPad.UP(1);
+            // Move the player on the left
+            if (key == KeyEvent.VK_UP)
+                playPad.UP(1);
 
-        if (key == KeyEvent.VK_DOWN)
-            playPad.Down(1);
+            if (key == KeyEvent.VK_DOWN)
+                playPad.Down(1);
 
-        // Move the player on the right
-        if (key == KeyEvent.VK_W)
-            playPad.UP(0);
+            // Move the player on the right
+            if (key == KeyEvent.VK_W)
+                playPad.UP(0);
 
-        if (key == KeyEvent.VK_S)
-            playPad.Down(0);
+            if (key == KeyEvent.VK_S)
+                playPad.Down(0);
 
-        playPad.checkPadPosRange(SCREEN_HEIGHT);
-        repaint();
+            playPad.checkPadPosRange(SCREEN_HEIGHT);
+            repaint();
+        }
     }
 
     @Override
@@ -110,9 +115,17 @@ public class PPG extends JPanel implements KeyListener, ActionListener {
     private void JudgeGameOver(int[] Score) {
         for (int i = 0; i < 2; i++) {
             if (Score[i] > 0) {
-                new GameOver(frameSet);
-                this.setVisible(false);
+                terminate();
+                GameOver p1 = new GameOver(frameSet);//新建面板NewJPanel2，並將視窗n2傳入
+                setVisible(false);//隱藏當前面板
+                frameSet.add(p1);//在視窗中新增面板p1
+                frameSet.setVisible(true);//顯示面板
+
             }
         }
+    }
+
+    public void terminate() {
+        isContinue = false;
     }
 }

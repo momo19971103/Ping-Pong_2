@@ -35,7 +35,7 @@ public class Directory extends JPanel{
         btn1.setBounds(90, 30, 200, 50);
         this.add(btn1);
 
-        final JButton btn2 = new JButton("雙人對打");
+        JButton btn2 = new JButton("雙人對打");
         btn2.setBounds(90, 100, 200, 50);
         btn2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
