@@ -7,7 +7,6 @@ public class FrameSet extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
         this.setBounds(0,0,400,400);
-        this.setTitle("¹CÀ¸¥Ø¿ý");
         this.setVisible(true);
     }
 }

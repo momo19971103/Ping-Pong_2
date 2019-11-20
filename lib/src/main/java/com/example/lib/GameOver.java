@@ -10,8 +10,11 @@ import javax.swing.JPanel;
 
 public class GameOver extends JPanel {
     FrameSet frameSet = null;
-    public GameOver(FrameSet frameset){
-        frameSet = frameset;
+    public GameOver(final FrameSet frameset){
+        this.frameSet = frameset;
+        initComponents();
+    }
+    void initComponents(){
         frameSet.setTitle("遊戲結束");
         frameSet.setContentPane(this);//在視窗中新增面板p1
         frameSet.setVisible(true);//顯示面板
@@ -24,7 +27,10 @@ public class GameOver extends JPanel {
         btn1.setBounds(90, 100, 200, 50);
         btn1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-
+                Directory p1=new Directory(frameSet);//新建面板NewJPanel2，並將視窗n2傳入
+                setVisible(false);//隱藏當前面板
+                frameSet.add(p1);//在視窗中新增面板p1
+                frameSet.setVisible(true);//顯示面板
             }
         });
         this.add(btn1);

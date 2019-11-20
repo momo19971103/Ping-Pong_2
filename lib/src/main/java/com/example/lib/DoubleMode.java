@@ -7,15 +7,17 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 public class DoubleMode extends JPanel {
-    FrameSet frameSet = null;
-    public DoubleMode(FrameSet frameset){
+    private FrameSet frameSet = null;
+
+    public DoubleMode(FrameSet frameset) {
         initComponents();
         this.frameSet = frameset;
         frameSet.setTitle("雙人對打");
         frameSet.add(this);//在視窗中新增面板p1
         frameSet.setVisible(true);//顯示面板
     }
-    private void initComponents(){
+
+    private void initComponents() {
         this.setLayout(null);
         JButton btn1 = new JButton("雙人對打-一般模式");
         btn1.setBounds(90, 30, 200, 50);
@@ -36,5 +38,17 @@ public class DoubleMode extends JPanel {
             }
         });
         this.add(btn2);
-}
+
+        final JButton btn3 = new JButton("返回目錄");
+        btn3.setBounds(90, 310, 200, 50);
+        btn3.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                Directory p1=new Directory(frameSet);//新建面板NewJPanel2，並將視窗n2傳入
+                setVisible(false);//隱藏當前面板
+                frameSet.add(p1);//在視窗中新增面板p1
+                frameSet.setVisible(true);//顯示面板
+            }
+        });
+        this.add(btn3);
+    }
 }
