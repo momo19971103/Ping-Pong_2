@@ -126,6 +126,6 @@ public class PPG extends JPanel implements KeyListener, ActionListener {
     }
 
     public void terminate() {
-        isContinue = false;
+        isContinue = false;//https://openhome.cc/Gossip/JavaEssence/StopThread.html
     }
 }
