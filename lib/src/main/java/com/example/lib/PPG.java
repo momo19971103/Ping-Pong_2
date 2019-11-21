@@ -39,7 +39,8 @@ public class PPG extends JPanel implements KeyListener, ActionListener {
     }
 
     public void setWindows() {
-        frameSet.addKeyListener(this);
+        this.setFocusable(true);            //http://hk.uwenku.com/question/p-scplcwbw-bgh.html
+        this.addKeyListener(this);
         if (MODE == Mode_general)
             frameSet.setTitle("¤@¯ë¼Ò¦¡");
         if (MODE == Mode_unlimited)
@@ -85,6 +86,7 @@ public class PPG extends JPanel implements KeyListener, ActionListener {
 
     @Override
     public void keyPressed(KeyEvent keyEvent) {
+        boolean status = this.requestFocusInWindow();
         if (isContinue) {
             int key = keyEvent.getKeyCode();
 
