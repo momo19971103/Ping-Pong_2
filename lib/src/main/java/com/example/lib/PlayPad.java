@@ -29,9 +29,9 @@ public class PlayPad {
     }
 
     public void drawPlayerPad(Graphics g) {
-        g.setColor(Color.GREEN);
+        g.setColor(Color.ORANGE);
         g.fillRect(playerPosX[0], playerPosY[0], InitialPad_Width, InitialPad_Height);
-        g.setColor(Color.BLUE);
+        g.setColor(Color.DARK_GRAY);
         g.fillRect(playerPosX[1], playerPosY[1], InitialPad_Width, InitialPad_Height);
     }
 
