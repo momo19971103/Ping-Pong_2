@@ -23,7 +23,7 @@ public class DoubleMode extends JPanel {
         btn1.setBounds(90, 30, 200, 50);
         btn1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                PPG p1 = new PPG(PPG.Mode_general,frameSet);
+                DoublesMatch p1 = new DoublesMatch(DoublesMatch.Mode_general,frameSet);
                 setVisible(false);//隱藏當前面板
                 frameSet.add(p1);//在視窗中新增面板p1
                 frameSet.setVisible(true);//顯示面板
@@ -35,7 +35,7 @@ public class DoubleMode extends JPanel {
         btn2.setBounds(90, 100, 200, 50);
         btn2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                PPG p1=new PPG(PPG.Mode_unlimited,frameSet);//新建面板NewJPanel2，並將視窗n2傳入
+                DoublesMatch p1=new DoublesMatch(DoublesMatch.Mode_unlimited,frameSet);//新建面板NewJPanel2，並將視窗n2傳入
                 setVisible(false);//隱藏當前面板
                 frameSet.add(p1);//在視窗中新增面板p1
                 frameSet.setVisible(true);//顯示面板
