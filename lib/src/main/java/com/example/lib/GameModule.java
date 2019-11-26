@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JPanel;
 
-public class Match extends JPanel implements ActionListener {
+public class GameModule extends JPanel implements ActionListener {
     private FrameSet frameSet = null;
     private int SCREEN_WIDTH;
     private int SCREEN_HEIGHT;
@@ -17,7 +17,7 @@ public class Match extends JPanel implements ActionListener {
     private Operating operating = new Operating();
     private int MODE = -1;
 
-    Match(int Mode, FrameSet frameset) {
+    GameModule(int Mode, FrameSet frameset) {
         frameSet = frameset;
         MODE = Mode;
         SCREEN_WIDTH = 400;

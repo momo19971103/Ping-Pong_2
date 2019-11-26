@@ -5,8 +5,8 @@
     <file url="file://$PROJECT_DIR$/lib/src/main/java/com/example/lib/DoublePlayerMode.java" charset="Big5" />
     <file url="file://$PROJECT_DIR$/lib/src/main/java/com/example/lib/DoublesMatch.java" charset="Big5" />
     <file url="file://$PROJECT_DIR$/lib/src/main/java/com/example/lib/FrameSet.java" charset="Big5" />
+    <file url="file://$PROJECT_DIR$/lib/src/main/java/com/example/lib/GameModule.java" charset="Big5" />
     <file url="file://$PROJECT_DIR$/lib/src/main/java/com/example/lib/GameOver.java" charset="Big5" />
-    <file url="file://$PROJECT_DIR$/lib/src/main/java/com/example/lib/Match.java" charset="Big5" />
     <file url="file://$PROJECT_DIR$/lib/src/main/java/com/example/lib/SinglePlayerMode.java" charset="Big5" />
   </component>
 </project>
