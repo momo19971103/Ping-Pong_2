@@ -9,4 +9,5 @@ public class FrameSet extends JFrame {
         this.setBounds(0,0,400,400);
         this.setVisible(true);
     }
+
 }

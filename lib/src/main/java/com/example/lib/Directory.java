@@ -53,6 +53,11 @@ public class Directory extends JPanel{
 
         JButton btn3 = new JButton("Â÷¶}");
         btn3.setBounds(90, 170, 200, 50);
+        btn3.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
         this.add(btn3);
 
     }
