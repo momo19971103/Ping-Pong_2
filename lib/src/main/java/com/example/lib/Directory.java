@@ -33,13 +33,19 @@ public class Directory extends JPanel{
 
         JButton btn1 = new JButton("單人");
         btn1.setBounds(90, 30, 200, 50);
+        btn1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new SinglePlayerMode(frameSet);
+                setVisible(false);
+            }
+        });
         this.add(btn1);
 
         JButton btn2 = new JButton("雙人對打");
         btn2.setBounds(90, 100, 200, 50);
         btn2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new DoubleMode(frameSet);
+                new DoublePlayerMode(frameSet);
                 setVisible(false);
             }
         });

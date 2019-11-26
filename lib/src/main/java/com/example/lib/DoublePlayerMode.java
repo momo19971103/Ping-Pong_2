@@ -6,10 +6,10 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-public class DoubleMode extends JPanel {
+public class DoublePlayerMode extends JPanel {
     private FrameSet frameSet = null;
 
-    public DoubleMode(FrameSet frameset) {
+    public DoublePlayerMode(FrameSet frameset) {
         initComponents();
         this.frameSet = frameset;
         frameSet.setTitle("Âù¤H¹ï¥´");
