@@ -6,13 +6,15 @@ import java.awt.event.ActionListener;
 
 import javax.swing.Timer;
 
+import static com.example.lib.GameModule.Mode_general;
+import static com.example.lib.GameModule.Mode_simpleAI;
+import static com.example.lib.GameModule.Mode_unlimited;
+
 public class Ball {
-    private Timer ballTimer;
     private int MODE = -1;
     private int Ball_PosX, Ball_PosY;
     private int Ball_initialPosX, Ball_initialPosY;
     private int ballSpeedX = 1, ballSpeedY = 1;
-    final int DELAY_MS = 10;
     private int BALL_RADIUS = 20;
     private int[] BallCenterPos;
     private int[] BallAroundPos;
@@ -32,12 +34,6 @@ public class Ball {
         Ball_PosY = Ball_initialPosY;
     }
 
-    public void initBallTimer(ActionListener ball) {
-        ballTimer = new Timer(DELAY_MS, ball);
-        ballTimer.setInitialDelay(1);
-        ballTimer.start();
-    }
-
     public void drawBall(Graphics g) {
         g.setColor(Color.CYAN);
         g.fillOval(Ball_PosX, Ball_PosY, BALL_RADIUS, BALL_RADIUS);
@@ -51,7 +47,7 @@ public class Ball {
     }
 
     public int[] checkBallPosRange(int screen_Width, int screen_Height, int[] playerScore) {
-        playerScore=BottomLineDetermination(screen_Width,playerScore);
+        playerScore = BottomLineDetermination(screen_Width, playerScore);
 
         int HeightCorrectionLength = 35;//(400,400)
         if (Ball_PosY > screen_Height - BALL_RADIUS - HeightCorrectionLength || Ball_PosY < 0)
@@ -75,10 +71,10 @@ public class Ball {
                 && BallAroundPos[AroundRight] > Play2_PadTopLeftPos[X])
             ballSpeedX = -1;
     }
-    private int[] BottomLineDetermination(int screen_Width, int[] playerScore){
+
+    private int[] BottomLineDetermination(int screen_Width, int[] playerScore) {
         int WidthCorrectionLength = 5;
-        int Mode_general = 0, Mode_unlimited = 1;
-        if (MODE == Mode_unlimited) {
+        if (MODE == Mode_unlimited ) {
             if (Ball_PosX > screen_Width - BALL_RADIUS - WidthCorrectionLength || Ball_PosX < 0) {
                 ballSpeedX = -ballSpeedX;
                 if (Ball_PosX <= 0) {
@@ -88,7 +84,7 @@ public class Ball {
                 }
             }
         }
-        if (MODE == Mode_general) {
+        if (MODE == Mode_general|| MODE == Mode_simpleAI) {
             if (Ball_PosX > screen_Width - WidthCorrectionLength || Ball_PosX < 0 - BALL_RADIUS) {
                 if (Ball_PosX <= 0) {
                     playerScore[1]++;

@@ -23,6 +23,11 @@ public class SinglePlayerMode extends JPanel {
         btn1.setBounds(90, 30, 200, 50);
         btn1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                SingleMarch singleMarch = new SingleMarch(SingleMarch.Mode_simpleAI,frameSet);
+                setVisible(false);
+                frameSet.add(singleMarch);
+                frameSet.setVisible(true);
+
             }
         });
         this.add(btn1);

@@ -5,7 +5,7 @@ import java.awt.event.ActionEvent;
 
 
 public class DoublesMatch extends GameModule {
-    final static int Mode_general = 0, Mode_unlimited = 1;
+
 
     DoublesMatch(int Mode, FrameSet frameset) {
         super(Mode, frameset);

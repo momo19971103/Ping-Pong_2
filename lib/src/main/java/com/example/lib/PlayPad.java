@@ -3,6 +3,10 @@ package com.example.lib;
 import java.awt.Color;
 import java.awt.Graphics;
 
+import static com.example.lib.GameModule.Mode_general;
+import static com.example.lib.GameModule.Mode_simpleAI;
+import static com.example.lib.GameModule.Mode_unlimited;
+
 public class PlayPad {
     private int InitialPad_Width = 20;
     private int InitialPad_Height = 100;
@@ -13,13 +17,14 @@ public class PlayPad {
     private int[] playerPosY = new int[PLAYER_NUM];
     private int[] playerScore = new int[PLAYER_NUM];
 
+
     public void initPlayerPos(int screen_Width, int screen_Height) {
         for (int i = 0; i < PLAYER_NUM; i++) {
             playerPosY[i] = screen_Height / 2;
         }
         int WidthCorrectionLength = 10;
-        playerPosX[0] =  PAD_OFFSET ;
-        playerPosX[1] = screen_Width - InitialPad_Width - PAD_OFFSET-WidthCorrectionLength ;
+        playerPosX[0] = PAD_OFFSET;
+        playerPosX[1] = screen_Width - InitialPad_Width - PAD_OFFSET - WidthCorrectionLength;
     }
 
     public void initPlayerScore() {
@@ -49,12 +54,20 @@ public class PlayPad {
         playerPosY[player] -= playerSpeedY;
     }
 
-    public void checkPadPosRange(int screen_Height) {
+    public boolean checkPadPosRange(int screen_Height) {
+        boolean HitTheWall = false;
         for (int i = 0; i < PLAYER_NUM; i++) {
-            if (playerPosY[i] < 0) playerPosY[i] = 0;
-            if (playerPosY[i] > screen_Height - InitialPad_Height)
+            if (playerPosY[i] < 0) {
+                playerPosY[i] = 0;
+                HitTheWall = true;
+            }
+
+            if (playerPosY[i] > screen_Height - InitialPad_Height) {
                 playerPosY[i] = screen_Height - InitialPad_Height;
+                HitTheWall = true;
+            }
         }
+        return HitTheWall;
     }
 
     public int[] getPlayerScore() {

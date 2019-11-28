@@ -5,9 +5,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JPanel;
+import javax.swing.Timer;
 
 public class GameModule extends JPanel implements ActionListener {
+    final static int Mode_general = 0, Mode_unlimited = 1, Mode_simpleAI = 2;
+    private boolean AI_move = true;
     private FrameSet frameSet = null;
+    private Timer Update_frequency;
+    private final int UpdateDELAY_MS = 10;
     private int SCREEN_WIDTH;
     private int SCREEN_HEIGHT;
     private int[] Score;
@@ -23,6 +28,7 @@ public class GameModule extends JPanel implements ActionListener {
         SCREEN_WIDTH = 400;
         SCREEN_HEIGHT = 400;
         ball.setMode(MODE, SCREEN_WIDTH, SCREEN_HEIGHT);
+        operating.setMode(MODE);
         setWindows();
     }
 
@@ -36,7 +42,7 @@ public class GameModule extends JPanel implements ActionListener {
 
         playPad.initPlayerPos(SCREEN_WIDTH, SCREEN_HEIGHT);
         playPad.initPlayerScore();
-        ball.initBallTimer(this);
+        UpdateFrequency();
     }
 
     public void setFrameTitle(String Title) {
@@ -93,4 +99,30 @@ public class GameModule extends JPanel implements ActionListener {
     private void terminate() {
         isContinue = false;//https://openhome.cc/Gossip/JavaEssence/StopThread.html
     }
+
+    private void UpdateFrequency() {
+        Update_frequency = new Timer(UpdateDELAY_MS, this);
+        Update_frequency.setInitialDelay(1);
+        Update_frequency.start();
+        if (MODE == Mode_simpleAI) {
+            Timer test = new Timer(500, new WorkJob());
+            test.start();
+        }
+    }
+
+    public class WorkJob implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (AI_move)
+                playPad.UP(0);
+            else
+                playPad.Down(0);
+            if(playPad.checkPadPosRange(SCREEN_HEIGHT)){
+                AI_move = !AI_move;
+            }
+
+        }
+    }
+
 }
